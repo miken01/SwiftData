@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1FFEDA691BDEBC3E0089F07D /* SwiftData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFEDA681BDEBC3E0089F07D /* SwiftData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FFEDA701BDEBC3E0089F07D /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFEDA651BDEBC3E0089F07D /* SwiftData.framework */; settings = {ASSET_TAGS = (); }; };
+		1FFEDA701BDEBC3E0089F07D /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFEDA651BDEBC3E0089F07D /* SwiftData.framework */; };
 		1FFEDA751BDEBC3E0089F07D /* SwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA741BDEBC3E0089F07D /* SwiftDataTests.swift */; };
-		1FFEDA871BDEBD710089F07D /* SwiftDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA861BDEBD710089F07D /* SwiftDataManager.swift */; settings = {ASSET_TAGS = (); }; };
-		1FFEDA8C1BDEBF4A0089F07D /* SwiftDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */; settings = {ASSET_TAGS = (); }; };
-		1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */; settings = {ASSET_TAGS = (); }; };
-		1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		1FFEDA941BDEC71D0089F07D /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA931BDEC71D0089F07D /* NSManagedObjectExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */; settings = {ASSET_TAGS = (); }; };
+		1FFEDA871BDEBD710089F07D /* SwiftDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA861BDEBD710089F07D /* SwiftDataManager.swift */; };
+		1FFEDA8C1BDEBF4A0089F07D /* SwiftDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */; };
+		1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */; };
+		1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */; };
+		1FFEDA941BDEC71D0089F07D /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA931BDEC71D0089F07D /* NSManagedObjectExtensions.swift */; };
+		1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

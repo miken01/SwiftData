@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name                    = "SwiftData"
-  s.version                 = "0.0.24"
+  s.version                 = "1.0.0"
   s.summary                 = "SwiftData is a collection of useful classes, categories and wrappers that make iOS development easier and more efficient."
   s.description             = <<-DESC
 'SwiftData' is a lightweight wrapper for CoreData. This framework simplifies the CoreData bootstraping process and provides useful utilities to help make working with CoreData more enjoyable.
