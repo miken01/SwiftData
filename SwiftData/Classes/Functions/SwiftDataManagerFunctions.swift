@@ -10,11 +10,11 @@ import Foundation
 import CoreData
 
 public func SwiftDataInitialize(config: SwiftDataConfiguration) {
-    SwiftDataManager.initialize(config)
+    SwiftDataManager.initialize(config: config)
 }
 
-public func SDExecuteFetchRequest(fetchRequest: NSFetchRequest) -> AnyObject? {
-    return SwiftDataManager.sharedManager.executeFetchRequest(fetchRequest)
+public func SDExecuteFetchRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> AnyObject? {
+    return SwiftDataManager.sharedManager.executeFetchRequest(fetchRequest: fetchRequest)
 }
 
 public func SDSaveManagedObjectContext() {
@@ -22,5 +22,5 @@ public func SDSaveManagedObjectContext() {
 }
 
 public func SDDeleteObject(object: NSManagedObject) {
-    SwiftDataManager.sharedManager.deleteObject(object);
+    SwiftDataManager.sharedManager.deleteObject(object: object);
 }

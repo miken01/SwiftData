@@ -13,15 +13,15 @@ extension SwiftDataManager {
     
     //MARK: - NSManagedObjectContext
     
-    func executeFetchRequest(fetchRequest: NSFetchRequest) -> AnyObject? {
+    func executeFetchRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> AnyObject? {
         
         do {
             
-            let results = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try self.managedObjectContext.fetch(fetchRequest)
             return results
         
         } catch let e as NSError {
-            self.logError("executeFetchRequest", message: "\(e)")
+            self.logError(method: "executeFetchRequest", message: "\(e)")
             return nil
         }
     }
@@ -32,11 +32,11 @@ extension SwiftDataManager {
             try self.managedObjectContext.save()
             
         } catch let e as NSError {
-            self.logError("executeFetchRequest", message: "\(e)")
+            self.logError(method: "executeFetchRequest", message: "\(e)")
         }
     }
     
     func deleteObject(object: NSManagedObject) {
-        self.managedObjectContext.deleteObject(object)
+        self.managedObjectContext.delete(object)
     }
 }

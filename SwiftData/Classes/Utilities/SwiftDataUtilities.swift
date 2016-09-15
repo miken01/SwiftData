@@ -12,8 +12,8 @@ struct SwiftDataUtilities {
     
     static func getApplicationLibraryDirectory() -> NSURL? {
         
-        if let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true).last {
-            return NSURL.fileURLWithPath(path)
+        if let path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last {
+            return NSURL.fileURL(withPath: path)
         }
         
         return nil

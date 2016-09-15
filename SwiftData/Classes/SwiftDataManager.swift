@@ -46,7 +46,7 @@ class SwiftDataManager {
             return mom
         }
         
-        _managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)
+        _managedObjectModel = NSManagedObjectModel.mergedModel(from: nil)
         return _managedObjectModel!
     }
     
@@ -58,19 +58,19 @@ class SwiftDataManager {
         
         if let cfg = self.config {
             
-            let storeUrl = SwiftDataUtilities.getApplicationLibraryDirectory()?.URLByAppendingPathComponent("\(cfg.databaseFileName).sqlite")
+            let storeUrl = SwiftDataUtilities.getApplicationLibraryDirectory()?.appendingPathComponent("\(cfg.databaseFileName).sqlite")
             let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
             
             if let url = storeUrl {
-                self.logInfo("getPersistentStoreCoordinator", message: url.absoluteString)
+                self.logInfo(method: "getPersistentStoreCoordinator", message: url.absoluteString!)
             }
             
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
             
             do {
-                try _persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeUrl, options: options)
+                try _persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeUrl, options: options)
             } catch {
-                self.logError("getPersistentStoreCoordinator", message: "Error loading persistent store coordinator")
+                self.logError(method: "getPersistentStoreCoordinator", message: "Error loading persistent store coordinator")
             }
             
             return _persistentStoreCoordinator!
@@ -87,7 +87,7 @@ class SwiftDataManager {
             return moc
         }
         
-        _managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        _managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         _managedObjectContext?.persistentStoreCoordinator = self.persistentStoreCoordinator
         _managedObjectContext?.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
         
