@@ -1,5 +1,5 @@
 //
-//  NSManagedObjectExtensions.swift
+//  SDManagedObject.swift
 //  SwiftData
 //
 //  Created by Mike Neill on 10/26/15.
@@ -9,14 +9,14 @@
 import Foundation
 import CoreData
 
-public extension NSManagedObject {
+open class SDManagedObject: NSManagedObject {
     
-    public class func entityName() -> String? {
+    open class func entityName() -> String? {
         assertionFailure("NSManagedObject.entityName() must be implemented")
         return nil
     }
     
-    public class func newEntity() -> AnyObject? {
+    open class func newEntity() -> AnyObject? {
         
         if let name = self.entityName() {
             let entity = NSEntityDescription.insertNewObject(forEntityName: name, into: SwiftDataManager.sharedManager.managedObjectContext)

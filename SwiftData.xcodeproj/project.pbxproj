@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F80E33F1D8BF6B000351635 /* SDManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E33E1D8BF6B000351635 /* SDManagedObject.swift */; };
 		1FFEDA691BDEBC3E0089F07D /* SwiftData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FFEDA681BDEBC3E0089F07D /* SwiftData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FFEDA701BDEBC3E0089F07D /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFEDA651BDEBC3E0089F07D /* SwiftData.framework */; };
 		1FFEDA751BDEBC3E0089F07D /* SwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA741BDEBC3E0089F07D /* SwiftDataTests.swift */; };
@@ -14,7 +15,6 @@
 		1FFEDA8C1BDEBF4A0089F07D /* SwiftDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */; };
 		1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */; };
 		1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */; };
-		1FFEDA941BDEC71D0089F07D /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA931BDEC71D0089F07D /* NSManagedObjectExtensions.swift */; };
 		1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F80E33E1D8BF6B000351635 /* SDManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDManagedObject.swift; sourceTree = "<group>"; };
 		1FFEDA651BDEBC3E0089F07D /* SwiftData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFEDA681BDEBC3E0089F07D /* SwiftData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftData.h; sourceTree = "<group>"; };
 		1FFEDA6A1BDEBC3E0089F07D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataUtilities.swift; sourceTree = "<group>"; };
 		1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataConfiguration.swift; sourceTree = "<group>"; };
 		1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataManagerExtensions.swift; sourceTree = "<group>"; };
-		1FFEDA931BDEC71D0089F07D /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataManagerFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +130,7 @@
 		1FFEDA8D1BDEC2DA0089F07D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F80E33E1D8BF6B000351635 /* SDManagedObject.swift */,
 				1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */,
 			);
 			path = Model;
@@ -139,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */,
-				1FFEDA931BDEC71D0089F07D /* NSManagedObjectExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,6 +214,8 @@
 				TargetAttributes = {
 					1FFEDA641BDEBC3E0089F07D = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = JKY2M8Z7TU;
+						DevelopmentTeamName = "Mike Neill (Personal Team)";
 						LastSwiftMigration = 0800;
 					};
 					1FFEDA6E1BDEBC3E0089F07D = {
@@ -263,11 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FFEDA8C1BDEBF4A0089F07D /* SwiftDataUtilities.swift in Sources */,
+				1F80E33F1D8BF6B000351635 /* SDManagedObject.swift in Sources */,
 				1FFEDA871BDEBD710089F07D /* SwiftDataManager.swift in Sources */,
 				1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */,
 				1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */,
 				1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */,
-				1FFEDA941BDEC71D0089F07D /* NSManagedObjectExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
