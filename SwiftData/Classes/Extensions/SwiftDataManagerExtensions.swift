@@ -18,7 +18,7 @@ extension SwiftDataManager {
         do {
             
             let results = try self.managedObjectContext.fetch(fetchRequest)
-            return results
+            return results as AnyObject?
         
         } catch let e as NSError {
             self.logError(method: "executeFetchRequest", message: "\(e)")

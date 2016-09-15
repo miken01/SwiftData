@@ -35,7 +35,7 @@ class SwiftDataManager {
     
     class func initialize(config: SwiftDataConfiguration) {
         sharedManager.config = config
-        sharedManager.getManagedObjectContext() // this loads CoreData
+        let _ = sharedManager.getManagedObjectContext()
     }
     
     //MARK: - CoreData Stack Setup
@@ -62,7 +62,7 @@ class SwiftDataManager {
             let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
             
             if let url = storeUrl {
-                self.logInfo(method: "getPersistentStoreCoordinator", message: url.absoluteString!)
+                self.logInfo(method: "getPersistentStoreCoordinator", message: url.absoluteString)
             }
             
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
