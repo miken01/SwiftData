@@ -214,6 +214,8 @@
 				TargetAttributes = {
 					1FFEDA641BDEBC3E0089F07D = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = JKY2M8Z7TU;
+						DevelopmentTeamName = "Mike Neill (Personal Team)";
 						LastSwiftMigration = 0800;
 					};
 					1FFEDA6E1BDEBC3E0089F07D = {

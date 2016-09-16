@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.homepage                = "https://github.com/miken01/SwiftData"
   s.license                 = "MIT"
   s.author                  = { "Mike Neill" => "michael_neill@me.com" }
-  s.platform                = :ios, "9.0"
+  s.platform                = :ios, "10.0"
   s.source                  = { :git => "https://github.com/miken01/SwiftData.git", :tag => "1.0.2" }
   s.public_header_files     = "SwiftData/**/*.h"
   s.source_files            = "SwiftData/**/*.{h,m,swift}"

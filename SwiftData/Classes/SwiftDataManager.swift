@@ -62,7 +62,7 @@ class SwiftDataManager {
             let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
             
             if let url = storeUrl {
-                self.logInfo(method: "getPersistentStoreCoordinator", message: url.absoluteString!)
+                self.logInfo(method: "getPersistentStoreCoordinator", message: url.absoluteString)
             }
             
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
