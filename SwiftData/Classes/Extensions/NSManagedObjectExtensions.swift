@@ -19,7 +19,7 @@ public extension NSManagedObject {
     public class func newEntity() -> AnyObject? {
         
         if let name = self.entityName() {
-            let entity = NSEntityDescription.insertNewObjectForEntityForName(name, inManagedObjectContext: SwiftDataManager.sharedManager.managedObjectContext)
+            let entity = NSEntityDescription.insertNewObject(forEntityName: name, into: SwiftDataManager.sharedManager.managedObjectContext)
             return entity
         }
         
