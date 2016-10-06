@@ -35,7 +35,7 @@ class SwiftDataManager {
     
     class func initialize(config: SwiftDataConfiguration) {
         sharedManager.config = config
-        sharedManager.getManagedObjectContext() // this loads CoreData
+        let _ = sharedManager.getManagedObjectContext()
     }
     
     //MARK: - CoreData Stack Setup
