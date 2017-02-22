@@ -21,10 +21,14 @@ class SwiftDataManager {
     
     var managedObjectModel: NSManagedObjectModel { get { return self.getManagedObjectModel() } }
     var persistentStoreCoordinator: NSPersistentStoreCoordinator { get { return self.getPersistentStoreCoordinator() } }
+    
+    var backgroundWriterContext: NSManagedObjectContext { get { return self.getBackgroundWriterContext() } }
     var managedObjectContext: NSManagedObjectContext { get { return self.getManagedObjectContext() } }
     
     private var _managedObjectModel: NSManagedObjectModel?
     private var _persistentStoreCoordinator: NSPersistentStoreCoordinator?
+    
+    private var _backgrouneWriterContext: NSManagedObjectContext?
     private var _managedObjectContext: NSManagedObjectContext?
     
     //MARK: - Initialization
@@ -81,6 +85,18 @@ class SwiftDataManager {
         }
     }
     
+    private func getBackgroundWriterContext() -> NSManagedObjectContext {
+        
+        if let moc = _backgrouneWriterContext {
+            return moc
+        }
+        
+        _backgrouneWriterContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        _backgrouneWriterContext?.persistentStoreCoordinator = self.persistentStoreCoordinator
+        
+        return _backgrouneWriterContext!
+    }
+    
     private func getManagedObjectContext() -> NSManagedObjectContext {
         
         if let moc = _managedObjectContext {
@@ -88,8 +104,7 @@ class SwiftDataManager {
         }
         
         _managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        _managedObjectContext?.persistentStoreCoordinator = self.persistentStoreCoordinator
-        _managedObjectContext?.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        _managedObjectContext?.parent = backgroundWriterContext
         
         return _managedObjectContext!
     }

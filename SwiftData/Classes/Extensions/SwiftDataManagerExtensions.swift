@@ -1,4 +1,4 @@
-//
+    //
 //  SwiftDataManager+NSManagedObjectContext.swift
 //  SwiftData
 //
@@ -28,11 +28,57 @@ extension SwiftDataManager {
     
     func saveManagedObjectContext() {
         
-        do {
-            try self.managedObjectContext.save()
+        if self.managedObjectContext.hasChanges {
             
-        } catch let e as NSError {
-            self.logError(method: "executeFetchRequest", message: "\(e)")
+            self.managedObjectContext.perform({
+                
+                do {
+                    try self.managedObjectContext.save()
+                    
+                } catch let e as NSError {
+                    self.logError(method: "saveManagedObjectContext - Failed to save main context with error: ", message: "\(e)")
+                    return
+                }
+                
+                self.backgroundWriterContext.perform({
+                    
+                    do {
+                        try self.backgroundWriterContext.save()
+                        
+                    } catch let e as NSError {
+                        self.logError(method: "saveManagedObjectContext - Failed to save background writer context with error: ", message: "\(e)")
+                        return
+                    }
+                })
+            })
+        }
+    }
+    
+    func saveManagedObjectContextAndWait() {
+        
+        if self.managedObjectContext.hasChanges {
+            
+            self.managedObjectContext.performAndWait({
+                
+                do {
+                    try self.managedObjectContext.save()
+                    
+                } catch let e as NSError {
+                    self.logError(method: "saveManagedObjectContext - Failed to save main context with error: ", message: "\(e)")
+                    return
+                }
+                
+                self.backgroundWriterContext.perform({
+                    
+                    do {
+                        try self.backgroundWriterContext.save()
+                        
+                    } catch let e as NSError {
+                        self.logError(method: "saveManagedObjectContext - Failed to save background writer context with error: ", message: "\(e)")
+                        return
+                    }
+                })
+            })
         }
     }
     
@@ -49,14 +95,7 @@ extension SwiftDataManager {
                 }
                 
                 
-                self.managedObjectContext.perform({
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        self.logError(method: "saveBackgroundContext", message: "Error saving main context")
-                    }
-                })
+                self.saveManagedObjectContext()
             })
         }
     }
@@ -74,14 +113,7 @@ extension SwiftDataManager {
                 }
                 
                 
-                self.managedObjectContext.performAndWait({
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        self.logError(method: "saveBackgroundContext", message: "Error saving main context")
-                    }
-                })
+                self.saveManagedObjectContextAndWait()
             })
         }
     }
