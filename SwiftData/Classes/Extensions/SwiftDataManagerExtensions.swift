@@ -36,6 +36,20 @@ extension SwiftDataManager {
         }
     }
     
+    func saveBackgroundContext(ctx: NSManagedObjectContext) {
+        
+        if ctx.hasChanges {
+            
+            do {
+                try ctx.save()
+            } catch {
+                self.logError(method: "saveBackgroundContext", message: "Error saving background context")
+            }
+            
+            saveManagedObjectContext()
+        }
+    }
+    
     func deleteObject(object: NSManagedObject) {
         self.managedObjectContext.delete(object)
     }

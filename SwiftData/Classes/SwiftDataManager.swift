@@ -94,6 +94,15 @@ class SwiftDataManager {
         return _managedObjectContext!
     }
     
+    //MARK: Multiple MOCs
+    
+    func registerBackgroundContext() -> NSManagedObjectContext {
+        
+        let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        ctx.parent = managedObjectContext
+        return ctx
+    }
+    
     //MARK: MISC
     
     func logInfo(method: String, message: String) {
