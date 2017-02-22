@@ -25,6 +25,10 @@ public func SDDeleteObject(object: NSManagedObject) {
     SwiftDataManager.sharedManager.deleteObject(object: object);
 }
 
+public func SDManagedObjectContext() -> NSManagedObjectContext {
+    return SwiftDataManager.sharedManager.managedObjectContext
+}
+
 public func SDRegisterBackgroundContext() -> NSManagedObjectContext {
     return SwiftDataManager.sharedManager.registerBackgroundContext()
 }
