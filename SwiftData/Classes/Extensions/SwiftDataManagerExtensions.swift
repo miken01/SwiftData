@@ -40,13 +40,24 @@ extension SwiftDataManager {
         
         if ctx.hasChanges {
             
-            do {
-                try ctx.save()
-            } catch {
-                self.logError(method: "saveBackgroundContext", message: "Error saving background context")
-            }
-            
-            saveManagedObjectContext()
+            ctx.perform({
+                
+                do {
+                    try ctx.save()
+                } catch {
+                    self.logError(method: "saveBackgroundContext", message: "Error saving background context")
+                }
+                
+                
+                self.managedObjectContext.perform({
+                    
+                    do {
+                        try self.managedObjectContext.save()
+                    } catch {
+                        self.logError(method: "saveBackgroundContext", message: "Error saving main context")
+                    }
+                })
+            })
         }
     }
     
