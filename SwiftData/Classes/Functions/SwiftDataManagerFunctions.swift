@@ -36,3 +36,7 @@ public func SDRegisterBackgroundContext() -> NSManagedObjectContext {
 public func SDSaveManagedObjectContext(context: NSManagedObjectContext) {
     return SwiftDataManager.sharedManager.saveBackgroundContext(ctx: context)
 }
+
+public func SDSaveManagedObjectContextAndWait(context: NSManagedObjectContext) {
+    return SwiftDataManager.sharedManager.saveBackgroundContextAndWait(ctx: context)
+}
