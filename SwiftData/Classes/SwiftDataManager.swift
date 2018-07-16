@@ -62,7 +62,14 @@ class SwiftDataManager {
         
         if let cfg = self.config {
             
-            let storeUrl = SwiftDataUtilities.getApplicationLibraryDirectory()?.appendingPathComponent("\(cfg.databaseFileName).sqlite")
+            var storeUrl: URL!
+            
+            if let ag = config?.appGroupName {
+                storeUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: ag)!.appendingPathComponent("\(cfg.databaseFileName).sqlite")
+            } else {
+                storeUrl = SwiftDataUtilities.getApplicationLibraryDirectory()?.appendingPathComponent("\(cfg.databaseFileName).sqlite")
+            }
+            
             let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
             
             if let url = storeUrl {
