@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name                    = "SwiftData"
-  s.version                 = "1.1.15"
+  s.version                 = "1.1.16"
   s.summary                 = "SwiftData is a collection of useful classes, categories and wrappers that make iOS development easier and more efficient."
   s.description             = <<-DESC
 'SwiftData' is a lightweight wrapper for CoreData. This framework simplifies the CoreData bootstraping process and provides useful utilities to help make working with CoreData more enjoyable.
@@ -17,12 +17,12 @@ Pod::Spec.new do |s|
   s.homepage                = "https://github.com/miken01/SwiftData"
   s.license                 = "MIT"
   s.author                  = { "Mike Neill" => "michael_neill@me.com" }
-  s.platform                = :ios, "11.4"
-  s.source                  = { :git => "https://github.com/miken01/SwiftData.git", :tag => "1.1.15" }
+  s.platform                = :ios, "10.3"
+  s.source                  = { :git => "https://github.com/miken01/SwiftData.git", :tag => "1.1.16" }
   s.public_header_files     = "SwiftData/**/*.h"
   s.source_files            = "SwiftData/**/*.{h,m,swift}"
   s.requires_arc            = true
-  s.ios.deployment_target   = '11.4'
+  s.ios.deployment_target   = '10.3'
   s.ios.frameworks          = 'CoreData', 'Foundation'
   s.swift_versions          = ['4.2', '5.0']
 end
