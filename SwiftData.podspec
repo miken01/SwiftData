@@ -25,3 +25,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target   = '11.4'
   s.ios.frameworks          = 'CoreData', 'Foundation'
   s.swift_versions          = ['4.2', '5.0']
+end
