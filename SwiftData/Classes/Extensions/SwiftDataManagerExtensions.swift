@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import os
 
 extension SwiftDataManager {
     
@@ -28,93 +29,57 @@ extension SwiftDataManager {
     
     func saveManagedObjectContext() {
         
-        if self.managedObjectContext.hasChanges {
-            
-            self.managedObjectContext.perform({
-                
-                do {
-                    try self.managedObjectContext.save()
-                    
-                } catch let e as NSError {
-                    self.logError(method: "saveManagedObjectContext - Failed to save main context with error: ", message: "\(e)")
-                    return
-                }
-                
-                self.backgroundWriterContext.perform({
-                    
-                    do {
-                        try self.backgroundWriterContext.save()
-                        
-                    } catch let e as NSError {
-                        self.logError(method: "saveManagedObjectContext - Failed to save background writer context with error: ", message: "\(e)")
-                        return
-                    }
-                })
-            })
+        guard managedObjectContext.hasChanges else { return }
+        
+        do {
+            try managedObjectContext.save()
+        } catch let nserror as NSError {
+            os_log("[SwiftDataManager][saveManagedObjectContext] Unable to save MOC")
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
     func saveManagedObjectContextAndWait() {
         
-        if self.managedObjectContext.hasChanges {
+        guard managedObjectContext.hasChanges else { return }
+
+        managedObjectContext.performAndWait {
             
-            self.managedObjectContext.performAndWait({
+            do {
+              try managedObjectContext.save()
                 
-                do {
-                    try self.managedObjectContext.save()
-                    
-                } catch let e as NSError {
-                    self.logError(method: "saveManagedObjectContext - Failed to save main context with error: ", message: "\(e)")
-                    return
-                }
-                
-                self.backgroundWriterContext.perform({
-                    
-                    do {
-                        try self.backgroundWriterContext.save()
-                        
-                    } catch let e as NSError {
-                        self.logError(method: "saveManagedObjectContext - Failed to save background writer context with error: ", message: "\(e)")
-                        return
-                    }
-                })
-            })
+            } catch let nserror as NSError {
+                os_log("[SwiftDataManager][saveManagedObjectContextAndWait] Unable to save MOC")
+              fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
     
-    func saveBackgroundContext(ctx: NSManagedObjectContext) {
+    func save(managedObjectContext moc: NSManagedObjectContext) {
         
-        if ctx.hasChanges {
-            
-            ctx.perform({
-                
-                do {
-                    try ctx.save()
-                } catch {
-                    self.logError(method: "saveBackgroundContext", message: "Error saving background context")
-                }
-                
-                
-                self.saveManagedObjectContext()
-            })
+        guard moc.hasChanges else { return }
+        
+        do {
+            try moc.save()
+        } catch let nserror as NSError {
+            os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
-    func saveBackgroundContextAndWait(ctx: NSManagedObjectContext) {
+    func save(managedObjectContextAndWait moc: NSManagedObjectContext) {
         
-        if ctx.hasChanges {
+        guard moc.hasChanges else { return }
+
+        moc.performAndWait {
             
-            ctx.performAndWait({
+            do {
+              try moc.save()
                 
-                do {
-                    try ctx.save()
-                } catch {
-                    self.logError(method: "saveBackgroundContext", message: "Error saving background context")
-                }
-                
-                
-                self.saveManagedObjectContextAndWait()
-            })
+            } catch let nserror as NSError {
+                os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
+              fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
     
