@@ -61,6 +61,7 @@ extension SwiftDataManager {
         
         do {
             try moc.save()
+            
         } catch let nserror as NSError {
             os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -70,15 +71,15 @@ extension SwiftDataManager {
     func save(managedObjectContextAndWait moc: NSManagedObjectContext) {
         
         guard moc.hasChanges else { return }
-
+        
         moc.performAndWait {
-            
+
             do {
               try moc.save()
-                
+
             } catch let nserror as NSError {
                 os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
-              fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }

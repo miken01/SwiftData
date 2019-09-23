@@ -56,7 +56,6 @@ class SwiftDataManager {
     //MARK: - Initialization
     
     required init() {
-        // init stuff
     }
     
     class func initialize(config: SwiftDataConfiguration) {
@@ -72,10 +71,16 @@ class SwiftDataManager {
         let storeDescription = NSPersistentStoreDescription(url: databaseUrl)
         container.persistentStoreDescriptions = [storeDescription]
         
-        container.loadPersistentStores { (storeDescription, error) in
-          if let error = error as NSError? {
-            fatalError("Unresolved error \(error), \(error.userInfo)")
-          }
+        weak var _container = container
+        
+        container.loadPersistentStores {(storeDescription, error) in
+          
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+                
+            } else {
+                _container?.viewContext.automaticallyMergesChangesFromParent = true
+            }
         }
 
         return container
@@ -84,7 +89,9 @@ class SwiftDataManager {
     //MARK: Multiple MOCs
     
     func registerBackgroundContext() -> NSManagedObjectContext {
-        return storeContainer.newBackgroundContext()
+        let ctx = storeContainer.newBackgroundContext()
+        ctx.automaticallyMergesChangesFromParent = true
+        return ctx
     }
     
     //MARK: MISC
