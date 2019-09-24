@@ -24,7 +24,10 @@ class SwiftDataManager {
         return self.storeContainer.viewContext
     }()
     
-    var modelName: String {
+    fileprivate let saveQueue = DispatchQueue(label: "SwiftDataManager.saveQueue")
+    fileprivate let saveAndWaitQueue = DispatchQueue(label: "SwiftDataManager.saveAndWaitQueue")
+    
+    private var modelName: String {
         get {
             if let v = config?.databaseFileName {
                 return v
@@ -34,7 +37,7 @@ class SwiftDataManager {
         }
     }
     
-    var libraryDirectory: URL {
+    private var libraryDirectory: URL {
          
         guard let path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last else {
             os_log("[SwiftDataManager][databaseDirectory] databaseDirectory")
@@ -44,13 +47,8 @@ class SwiftDataManager {
         return URL(fileURLWithPath: path)
     }
     
-    var databaseUrl: URL {
+    private var databaseUrl: URL {
         return libraryDirectory.appendingPathComponent(modelName + ".sqlite")
-    }
-    
-    var hasExistingDatabase: Bool {
-        let v = FileManager.default.fileExists(atPath: databaseUrl.absoluteString)
-        return v
     }
     
     //MARK: - Initialization
@@ -80,6 +78,7 @@ class SwiftDataManager {
                 
             } else {
                 _container?.viewContext.automaticallyMergesChangesFromParent = true
+                _container?.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
             }
         }
 
@@ -102,5 +101,121 @@ class SwiftDataManager {
     
     func logError(method: String, message: String) {
         NSLog("[SwiftDataManager][\(method)] Error: \(message)")
+    }
+}
+
+extension SwiftDataManager {
+    
+    //MARK: - NSManagedObjectContext
+    
+    func executeFetchRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> AnyObject? {
+        
+        do {
+            
+            let results = try self.managedObjectContext.fetch(fetchRequest)
+            return results as AnyObject?
+        
+        } catch let e as NSError {
+            self.logError(method: "executeFetchRequest", message: "\(e)")
+            return nil
+        }
+    }
+    
+    func saveManagedObjectContext() {
+        
+        saveQueue.async {[weak self] in
+            
+            guard let moc = self?.managedObjectContext else {
+                return
+            }
+            
+            guard moc.hasChanges else { return }
+            
+            print("[SwiftDataManager][saveManagedObjectContext] Start save")
+            
+            do {
+                print("[SwiftDataManager][saveManagedObjectContext] Try save")
+                try moc.save()
+                print("[SwiftDataManager][saveManagedObjectContext] Save complete")
+                
+            } catch let nserror as NSError {
+                os_log("[SwiftDataManager][saveManagedObjectContext] Unable to save MOC")
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    func saveManagedObjectContextAndWait() {
+        
+        saveAndWaitQueue.sync {[weak self] in
+            
+            guard let moc = self?.managedObjectContext else {
+                return
+            }
+            
+            guard moc.hasChanges else { return }
+
+            print("[SwiftDataManager][saveManagedObjectContextAndWait] Start save")
+            
+            moc.performAndWait {
+                
+                do {
+                    print("[SwiftDataManager][saveManagedObjectContextAndWait] Try save")
+                    try moc.save()
+                    print("[SwiftDataManager][saveManagedObjectContextAndWait] Save complete")
+                    
+                } catch let nserror as NSError {
+                    os_log("[SwiftDataManager][saveManagedObjectContextAndWait] Unable to save MOC")
+                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
+        }
+    }
+    
+    func save(managedObjectContext moc: NSManagedObjectContext) {
+        
+        saveQueue.async {
+        
+            print("[SwiftDataManager][save:managedObjectContext] Start save")
+            
+            guard moc.hasChanges else { return }
+            
+            do {
+                print("[SwiftDataManager][save:managedObjectContext] try save")
+                try moc.save()
+                print("[SwiftDataManager][save:managedObjectContext] Save complete")
+                
+            } catch let nserror as NSError {
+                os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    func save(managedObjectContextAndWait moc: NSManagedObjectContext) {
+        
+        saveAndWaitQueue.sync {
+         
+            guard moc.hasChanges else { return }
+            
+            print("[SwiftDataManager][save:managedObjectContext] Start save")
+            
+            moc.performAndWait {
+
+                do {
+                    print("[SwiftDataManager][save:managedObjectContextAndWait] try save")
+                  try moc.save()
+                    print("[SwiftDataManager][save:managedObjectContextAndWait] Save complete")
+
+                } catch let nserror as NSError {
+                    os_log("[SwiftDataManager][save:managedObjectContextAndWait] Unable to save MOC")
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
+        }
+    }
+    
+    func deleteObject(object: NSManagedObject) {
+        self.managedObjectContext.delete(object)
     }
 }

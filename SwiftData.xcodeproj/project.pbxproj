@@ -14,7 +14,6 @@
 		1FFEDA871BDEBD710089F07D /* SwiftDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA861BDEBD710089F07D /* SwiftDataManager.swift */; };
 		1FFEDA8C1BDEBF4A0089F07D /* SwiftDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */; };
 		1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */; };
-		1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */; };
 		1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +38,6 @@
 		1FFEDA861BDEBD710089F07D /* SwiftDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataManager.swift; sourceTree = "<group>"; };
 		1FFEDA8B1BDEBF4A0089F07D /* SwiftDataUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataUtilities.swift; sourceTree = "<group>"; };
 		1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataConfiguration.swift; sourceTree = "<group>"; };
-		1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataManagerExtensions.swift; sourceTree = "<group>"; };
 		1FFEDA961BDEC8220089F07D /* SwiftDataManagerFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataManagerFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +102,6 @@
 			children = (
 				1FFEDA861BDEBD710089F07D /* SwiftDataManager.swift */,
 				1FFEDA951BDEC8170089F07D /* Functions */,
-				1FFEDA901BDEC5A50089F07D /* Extensions */,
 				1FFEDA8D1BDEC2DA0089F07D /* Model */,
 				1FFEDA8A1BDEBF3F0089F07D /* Utilities */,
 			);
@@ -134,14 +131,6 @@
 				1FFEDA8E1BDEC2EE0089F07D /* SwiftDataConfiguration.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		1FFEDA901BDEC5A50089F07D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1FFEDA911BDEC5C40089F07D /* SwiftDataManagerExtensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1FFEDA951BDEC8170089F07D /* Functions */ = {
@@ -270,7 +259,6 @@
 				1FFEDA871BDEBD710089F07D /* SwiftDataManager.swift in Sources */,
 				1FFEDA8F1BDEC2EE0089F07D /* SwiftDataConfiguration.swift in Sources */,
 				1FFEDA971BDEC8220089F07D /* SwiftDataManagerFunctions.swift in Sources */,
-				1FFEDA921BDEC5C40089F07D /* SwiftDataManagerExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
