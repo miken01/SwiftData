@@ -215,11 +215,11 @@
 			};
 			buildConfigurationList = 1FFEDA5F1BDEBC3E0089F07D /* Build configuration list for PBXProject "SwiftData" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 1FFEDA5B1BDEBC3E0089F07D;
 			productRefGroup = 1FFEDA661BDEBC3E0089F07D /* Products */;
