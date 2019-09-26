@@ -138,9 +138,9 @@ extension SwiftDataManager {
                 try moc.save()
                 print("[SwiftDataManager][saveManagedObjectContext] Save complete")
                 
-            } catch let nserror as NSError {
+            } catch _ as NSError {
                 os_log("[SwiftDataManager][saveManagedObjectContext] Unable to save MOC")
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }
@@ -164,9 +164,9 @@ extension SwiftDataManager {
                     try moc.save()
                     print("[SwiftDataManager][saveManagedObjectContextAndWait] Save complete")
                     
-                } catch let nserror as NSError {
+                } catch _ as NSError {
                     os_log("[SwiftDataManager][saveManagedObjectContextAndWait] Unable to save MOC")
-                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                 }
             }
         }
@@ -185,9 +185,9 @@ extension SwiftDataManager {
                 try moc.save()
                 print("[SwiftDataManager][save:managedObjectContext] Save complete")
                 
-            } catch let nserror as NSError {
+            } catch _ as NSError {
                 os_log("[SwiftDataManager][save:managedObjectContext] Unable to save MOC")
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }
@@ -207,9 +207,9 @@ extension SwiftDataManager {
                   try moc.save()
                     print("[SwiftDataManager][save:managedObjectContextAndWait] Save complete")
 
-                } catch let nserror as NSError {
+                } catch _ as NSError {
                     os_log("[SwiftDataManager][save:managedObjectContextAndWait] Unable to save MOC")
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                 }
             }
         }
