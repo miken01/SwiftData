@@ -48,7 +48,16 @@ class SwiftDataManager {
     }
     
     private var databaseUrl: URL {
-        return libraryDirectory.appendingPathComponent(modelName + ".sqlite")
+        
+        guard let appGroupName = config?.appGroupName else {
+            return libraryDirectory.appendingPathComponent(modelName + ".sqlite")
+        }
+        
+        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupName) else {
+            fatalError("Unable to get AppGroup URL")
+        }
+        
+        return url.appendingPathComponent(modelName + ".sqlite")
     }
     
     //MARK: - Initialization
